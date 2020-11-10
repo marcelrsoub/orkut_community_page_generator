@@ -1,0 +1,123 @@
+.border{
+    border:1px solid #000;
+}
+
+.body{
+    padding:0;
+    width:1024px;
+    height:768px;
+    margin-left:-512px;
+    position: absolute;
+    left:50%;
+}
+
+.navbar{
+    height:27px;
+    margin:0;
+    position: relative;
+    top:0;
+}
+.logo{
+    width:79px;
+    height: 100%;
+    float: left;
+}
+.menu-btn{
+    position: relative;
+    float: left;
+    font-size: small;
+    padding-left: 6px;
+    padding-right: 6px;
+    height: 100%;
+}
+.menu-right{
+    position: relative;
+    float: right;
+    font-size: small;
+    padding-left: 6px;
+    padding-right: 6px;
+    height: 100%;
+}
+.search{
+    width:150px;
+}
+
+
+.cont-left{
+    position: absolute;
+    top:40px;
+    left:0px;
+    height:315px;
+    width:145px;
+}
+
+.cont-right{
+    position: absolute;
+    top:40px;
+    right:0px;
+    /* height:285px; */
+    width:290px;
+}
+
+
+.title-right{
+    position: relative;
+    top:5px;
+    left:12px;
+    font-size: large;
+}
+.cards{
+    padding:7px;
+}
+.cards .card{
+    float:left;
+    height:130px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    width: 30%;
+    font-size: small;
+    text-align: center;
+}
+.card-pic{
+    position: relative;
+    top: 10px;
+    left: 10px;
+    width: 65px;
+    height: 70px;
+}
+.card-desc{
+    position: relative;
+    top:15px;
+    line-height: 15px;
+}
+
+/*MID*/
+.cont-mid{
+    position: absolute;
+    top:40px;
+    left:155px;
+    height:600px;
+    width:553px;
+    padding:7px
+}
+
+.title-mid{
+    font-size: x-large ;
+    font-weight: bold;
+}
+
+.breadcrumbs {
+    margin-top: 0px;
+}
+
+.breadcrumbs li{
+    float: left;
+    font-size: small;
+    margin-left: 15px;
+    list-style: ">";
+}
+
+.breadcrumbs li:first-child{
+    list-style: none;
+    margin-left: -35px;
+}
