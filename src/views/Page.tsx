@@ -15,9 +15,15 @@ interface contentObj {
 
 const Page = (props: { content: contentObj }) => {
   const content: contentObj = props.content;
+  const initialValue:contentObj = {
+    name: "Community Name of it",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu est ultricies, iaculis ligula eget, efficitur eros. Sed vehicula neque eu tempor mollis. Fusce quis augue lobortis, tincidunt lacus ac, ultrices magna. Praesent ornare auctor velit, sit amet euismod elit pretium sit amet. Fusce aliquet urna pretium mi aliquam gravida in commodo augue. Maecenas varius lorem eget bibendum blandit. Nunc vel ex nibh. Morbi feugiat accumsan scelerisque. Morbi sodales molestie tortor eu lacinia.",
+    photoSrc: "",
+  }
   return (
     <div className="wrapper">
-      <div className="body">
+      <div className="body" id="capture">
         <div className="navbar">
           <div className="logo">
             <img className="logo-img" src={logo} alt="" />
@@ -39,13 +45,13 @@ const Page = (props: { content: contentObj }) => {
           <div className="cont-left">
             <div className="left-pic">
               <img
-                src={content.photoSrc || ""}
+                src={content.photoSrc || initialValue.photoSrc}
                 className="left-main-img"
                 alt=""
               />
             </div>
             <span className="left-title center">
-              {content.name || "Comunidade"}
+              {content.name || initialValue.name}
             </span>
             <span className="left-subtitle center">(7.795 members)</span>
             <hr />
@@ -67,12 +73,12 @@ const Page = (props: { content: contentObj }) => {
           </div>
 
           <div className="cont-mid">
-            <span className="title-mid">{content.name || "Comunidade"}</span>
+            <span className="title-mid">{content.name || initialValue.name}</span>
             <ul className="breadcrumbs">
               <li>Home</li>
               <li>Communities</li>
               <li>Cultures & Communities</li>
-              <li>{content.name || "Comunidade"}</li>
+              <li>{content.name || initialValue.name}</li>
             </ul>
 
             <table className="mid-table">
@@ -80,7 +86,7 @@ const Page = (props: { content: contentObj }) => {
                 <td>descrição:</td>
                 <td>
                   {content.description ||
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu est ultricies, iaculis ligula eget, efficitur eros. Sed vehicula neque eu tempor mollis. Fusce quis augue lobortis, tincidunt lacus ac, ultrices magna. Praesent ornare auctor velit, sit amet euismod elit pretium sit amet. Fusce aliquet urna pretium mi aliquam gravida in commodo augue. Maecenas varius lorem eget bibendum blandit. Nunc vel ex nibh. Morbi feugiat accumsan scelerisque. Morbi sodales molestie tortor eu lacinia."}
+                    initialValue.description}
                 </td>
               </tr>
               <tr>
@@ -101,7 +107,7 @@ const Page = (props: { content: contentObj }) => {
               </tr>
               <tr>
                 <td>data de criação:</td>
-                <td>{Date.now()}</td>
+                <td>{new Date(Date.now()).toLocaleString('pt-br')}</td>
               </tr>
               {/* <tr>
                             <td>description</td>

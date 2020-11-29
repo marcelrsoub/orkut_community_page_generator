@@ -1,54 +1,177 @@
 import {
+  Box,
   Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
   Container,
   Grid,
+  Hidden,
+  Modal,
   TextField,
   Typography,
 } from "@material-ui/core";
-import { AddAPhoto } from "@material-ui/icons";
-import React, { useState } from "react";
+import { AddAPhoto, Check, PanoramaFishEye, Save, Visibility } from "@material-ui/icons";
+import html2canvas from "html2canvas";
+import React, { useRef, useState } from "react";
 import Page from "./Page";
 
 const Editor = (props: any) => {
+  const [imgOpen, setImgOpen] = useState(false);
+  const downloadBtn = useRef();
 
-    const [contentObj, setContentObj] = useState({
-        name: "Community Name of it",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu est ultricies, iaculis ligula eget, efficitur eros. Sed vehicula neque eu tempor mollis. Fusce quis augue lobortis, tincidunt lacus ac, ultrices magna. Praesent ornare auctor velit, sit amet euismod elit pretium sit amet. Fusce aliquet urna pretium mi aliquam gravida in commodo augue. Maecenas varius lorem eget bibendum blandit. Nunc vel ex nibh. Morbi feugiat accumsan scelerisque. Morbi sodales molestie tortor eu lacinia.",
-        photoSrc: "",
-      })
+  function gerarImagem() {
+    window.scroll(0,0);
+    html2canvas(document.querySelector("#capture"), {allowTaint:true}).then((canvas) => {
+      // document.body.appendChild(canvas);
+      const imgUrl = canvas.toDataURL("image/png");
+      let element = document.getElementById("downloadBtn");
+      if (element !== null) {
+        element.setAttribute("href", imgUrl);
+        element.click();
+      }
 
-    function handlePicUpload (file:any){
-        const newSrc = URL.createObjectURL(file);
+      // setImgOpen(true);
+    });
+  }
+  // const handleClick = event => {
+  //   const anchor = (event.target.ownerDocument || document).querySelector(
+  //     "#back-to-top-anchor"
+  //   );
 
-        setContentObj({
-            ...contentObj,
-            photoSrc:newSrc
-        })
+  //   if (anchor) {
+  //     anchor.scrollIntoView({ behavior: "smooth", block: "center" });
+  //   }
+  // };
 
-    }
-    
+  function preverImagem() {
+    window.scroll(0,0);
+    html2canvas(document.querySelector("#capture"), {allowTaint:true}).then((canvas) => {
+      // document.body.appendChild(canvas);
+      const imgUrl = canvas.toDataURL("image/png");
+      let element = document.getElementById("showImg");
+      if (element !== null) {
+        element.setAttribute("src", imgUrl);
+        // element.click();
+      }
+
+      // setImgOpen(true);
+    });
+  }
+
+  const [contentObj, setContentObj] = useState({
+    name: "Community Name of it",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu est ultricies, iaculis ligula eget, efficitur eros. Sed vehicula neque eu tempor mollis. Fusce quis augue lobortis, tincidunt lacus ac, ultrices magna. Praesent ornare auctor velit, sit amet euismod elit pretium sit amet. Fusce aliquet urna pretium mi aliquam gravida in commodo augue. Maecenas varius lorem eget bibendum blandit. Nunc vel ex nibh. Morbi feugiat accumsan scelerisque. Morbi sodales molestie tortor eu lacinia.",
+    photoSrc: "",
+  });
+
+  function handlePicUpload(file: any) {
+    const newSrc = URL.createObjectURL(file);
+
+    setContentObj({
+      ...contentObj,
+      photoSrc: newSrc,
+    });
+  }
+
   return (
     <>
+    <div className="canvas-top" style={{zIndex:-1000,overflow:"hidden",width:0,height:0,padding:0,margin:0}}><Page content={contentObj} /></div>
       <Container>
-        <Typography variant="h4">Criador de Comunidades Orkut</Typography>
-        <Typography variant="body1">
-          Crie aqui a sua comunidade do orkut e salve a imagem.
-        </Typography>
-        <Grid container direction="column" spacing={3}>
-            <Grid item><TextField variant="outlined" label="Nome da Comunidade" onChange={(event)=>{setContentObj({...contentObj,name:event.target.value})}} /></Grid>
-            <Grid item><TextField multiline variant="outlined" label="Descrição da Comunidade" onChange={(event)=>{setContentObj({...contentObj,description:event.target.value})}} /></Grid>
-            <Grid item><Button variant="outlined" component="label" style={{ width: "60px" }}>
-            <AddAPhoto /> <input type="file" accept="image/*" onChange={(event:any)=>{handlePicUpload(event.target.files[0])}} hidden />
-          </Button>
-          {/* <Button variant="outlined">Gerar Comunidade</Button> */}
-          </Grid>
-          
-          
-          
-        </Grid>
+        <Card style={{ marginBottom: "50px", marginTop: "50px" }}>
+          <CardContent>
+            <Typography gutterBottom variant="h4" align="center">
+              Gerador de Comunidades Orkut
+            </Typography>
+            <Typography gutterBottom variant="body1" align="center">
+              Crie aqui a sua comunidade do orkut e salve a imagem.
+            </Typography>
+          </CardContent>
+          <CardContent>
+            <Grid container direction="column" spacing={1} alignItems="center">
+              <Grid item>
+                <TextField
+                  variant="outlined"
+                  label="Nome da Comunidade"
+                  onChange={(event) => {
+                    setContentObj({ ...contentObj, name: event.target.value });
+                  }}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  multiline
+                  variant="outlined"
+                  label="Descrição da Comunidade"
+                  onChange={(event) => {
+                    setContentObj({
+                      ...contentObj,
+                      description: event.target.value,
+                    });
+                  }}
+                />
+              </Grid>
+              <Grid item>
+                {contentObj.photoSrc !== "" ? <Check />:null}
+                <Button
+                  variant="outlined"
+                  component="label"
+                  style={{ width: "60px" }}
+                >
+                  <AddAPhoto />{" "}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(event: any) => {
+                      handlePicUpload(event.target.files[0]);
+                    }}
+                    hidden
+                  />
+                </Button>
+                {/* <Button variant="outlined">Gerar Comunidade</Button> */}
+              </Grid>
+            </Grid>
+          </CardContent>
+          <CardActions>
+            <Button
+            variant="outlined"
+              onClick={() => {
+                preverImagem();
+              }}
+            >
+              <Visibility />
+            </Button>
+            <Button
+            variant="outlined"
+              style={{ marginLeft: "auto" }}
+              onClick={() => {
+                gerarImagem();
+              }}
+            >
+             <Save />
+            </Button>
+            <a
+              id="downloadBtn"
+              download="comunidade-orkut.png"
+              style={{ display: "none" }}
+            >
+              photo
+            </a>
+          </CardActions>
+          <CardMedia>
+            
+            
+      {/* <Page content={contentObj} /> */}
+            <img id="showImg" style={{width:"100%"}} alt="" />
+          </CardMedia>
+          {/* </Hidden> */}
+
+        </Card>
       </Container>
-      <Page content={contentObj} />
+
+      
     </>
   );
 };

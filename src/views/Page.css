@@ -15,14 +15,28 @@
   border: 1px solid #000;
 }
 
+/* .resize{
+  width: 1024px; 
+  height:768px;
+} */
+
 .wrapper{
   display: inline-block; /* shrink to fit */
-  width: 100%;           /* whatever width you like */
+  /* width:1024px; */
+  width:100%;
   position: relative;
+  /* overflow: scroll; */
+
+}
+.wrapper::after {
+  padding-top: 56.25%;
+  display: block;
+  content: '';
 }
 
 .body {
   position: absolute;
+  top: 0; bottom: 0; right: 0; left: 0;  /* follow the parent's edges */
   padding: 0;
   width: 1024px;
   height: 768px;
