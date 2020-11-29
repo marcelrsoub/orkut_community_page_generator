@@ -15,8 +15,8 @@ function App() {
   return (
     <Router>
       <Switch>
-        {/* <Route exact path="/" component={Editor} /> */}
-        <Route exact path="/" component={Page} />
+        <Route exact path="/" component={Editor} />
+        {/* <Route exact path="/" component={Page} /> */}
       </Switch>
     </Router>
   );
