@@ -123,7 +123,7 @@ const Page = (props: { content: contentObj }) => {
               <div className="card">
                 <div className="card-pic border"></div>
                 <div className="card-desc">
-                  <span className="card-title">Avengers</span>
+                  <span className="card-title">Comunidade</span>
                   <br />
                   <span className="card-number">(11,470)</span>
                 </div>
@@ -131,7 +131,7 @@ const Page = (props: { content: contentObj }) => {
               <div className="card">
                 <div className="card-pic border"></div>
                 <div className="card-desc">
-                  <span className="card-title">Avengers</span>
+                  <span className="card-title">Comunidade</span>
                   <br />
                   <span className="card-number">(11,470)</span>
                 </div>
@@ -139,7 +139,7 @@ const Page = (props: { content: contentObj }) => {
               <div className="card">
                 <div className="card-pic border"></div>
                 <div className="card-desc">
-                  <span className="card-title">Avengers</span>
+                  <span className="card-title">Comunidade</span>
                   <br />
                   <span className="card-number">(11,470)</span>
                 </div>
@@ -147,7 +147,7 @@ const Page = (props: { content: contentObj }) => {
               <div className="card">
                 <div className="card-pic border"></div>
                 <div className="card-desc">
-                  <span className="card-title">Avengers</span>
+                  <span className="card-title">Comunidade</span>
                   <br />
                   <span className="card-number">(11,470)</span>
                 </div>
@@ -155,7 +155,7 @@ const Page = (props: { content: contentObj }) => {
               <div className="card">
                 <div className="card-pic border"></div>
                 <div className="card-desc">
-                  <span className="card-title">Avengers of the century</span>
+                  <span className="card-title">Comunidade of the century</span>
                   <br />
                   <span className="card-number">(11,470)</span>
                 </div>
@@ -163,7 +163,7 @@ const Page = (props: { content: contentObj }) => {
               <div className="card">
                 <div className="card-pic border"></div>
                 <div className="card-desc">
-                  <span className="card-title">Avengers</span>
+                  <span className="card-title">Comunidade</span>
                   <br />
                   <span className="card-number">(11,470)</span>
                 </div>

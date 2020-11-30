@@ -1,6 +1,7 @@
 {
   "name": "orkut_community_generator",
   "version": "0.1.0",
+  "author":"Marcel Soubkovsky",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
