@@ -15,7 +15,7 @@ import {
 import { AddAPhoto, Check, PanoramaFishEye, Save, Visibility } from "@material-ui/icons";
 import html2canvas from "html2canvas";
 import React, { useRef, useState } from "react";
-import Page from "./Page";
+import Page, {initialValue} from "./Page";
 
 const Editor = (props: any) => {
   const [imgOpen, setImgOpen] = useState(false);
@@ -60,12 +60,7 @@ const Editor = (props: any) => {
     });
   }
 
-  const [contentObj, setContentObj] = useState({
-    name: "Community Name of it",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu est ultricies, iaculis ligula eget, efficitur eros. Sed vehicula neque eu tempor mollis. Fusce quis augue lobortis, tincidunt lacus ac, ultrices magna. Praesent ornare auctor velit, sit amet euismod elit pretium sit amet. Fusce aliquet urna pretium mi aliquam gravida in commodo augue. Maecenas varius lorem eget bibendum blandit. Nunc vel ex nibh. Morbi feugiat accumsan scelerisque. Morbi sodales molestie tortor eu lacinia.",
-    photoSrc: "",
-  });
+  const [contentObj, setContentObj] = useState(initialValue);
 
   function handlePicUpload(file: any) {
     const newSrc = URL.createObjectURL(file);
@@ -109,6 +104,19 @@ const Editor = (props: any) => {
                     setContentObj({
                       ...contentObj,
                       description: event.target.value,
+                    });
+                  }}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  multiline
+                  variant="outlined"
+                  label="Número de Membros"
+                  onChange={(event) => {
+                    setContentObj({
+                      ...contentObj,
+                      members: event.target.value,
                     });
                   }}
                 />

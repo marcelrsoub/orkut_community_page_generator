@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Page.css";
 
 import join from "../assets/img/camera.png";
@@ -6,21 +6,27 @@ import invite from "../assets/img/pessoinha.png";
 import report from "../assets/img/denunciar.png";
 import searchbar from "../assets/img/searchbar.png";
 import logo from "../assets/img/logo.png";
+import comunidades from "../models/comunidades";
 
-interface contentObj {
+export interface contentObj {
   name: string;
   description: string;
   photoSrc: string;
+  members:number|string;
+}
+
+export const initialValue:contentObj = {
+  name: "Nome da comunidade",
+  description:
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu est ultricies, iaculis ligula eget, efficitur eros. Sed vehicula neque eu tempor mollis. Fusce quis augue lobortis, tincidunt lacus ac, ultrices magna. Praesent ornare auctor velit, sit amet euismod elit pretium sit amet. Fusce aliquet urna pretium mi aliquam gravida in commodo augue. Maecenas varius lorem eget bibendum blandit. Nunc vel ex nibh. Morbi feugiat accumsan scelerisque. Morbi sodales molestie tortor eu lacinia.",
+  photoSrc: "",
+  members:"7.795"
 }
 
 const Page = (props: { content: contentObj }) => {
-  const content: contentObj = props.content;
-  const initialValue:contentObj = {
-    name: "Community Name of it",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu est ultricies, iaculis ligula eget, efficitur eros. Sed vehicula neque eu tempor mollis. Fusce quis augue lobortis, tincidunt lacus ac, ultrices magna. Praesent ornare auctor velit, sit amet euismod elit pretium sit amet. Fusce aliquet urna pretium mi aliquam gravida in commodo augue. Maecenas varius lorem eget bibendum blandit. Nunc vel ex nibh. Morbi feugiat accumsan scelerisque. Morbi sodales molestie tortor eu lacinia.",
-    photoSrc: "",
-  }
+  let content: contentObj = props.content;
+  let relComArray:number[] = new Array();
+  if(!content) content=initialValue;
   return (
     <div className="wrapper">
       <div className="body" id="capture">
@@ -53,20 +59,20 @@ const Page = (props: { content: contentObj }) => {
             <span className="left-title center">
               {content.name || initialValue.name}
             </span>
-            <span className="left-subtitle center">(7.795 members)</span>
+            <span className="left-subtitle center">({content.members || initialValue.members} membros)</span>
             <hr />
             <ul className="left-menu">
               <li>
                 <img src={join} className="icon" alt="" />
-                join
+                participar
               </li>
               <li>
                 <img src={invite} className="icon" alt="" />
-                invite friends
+                convidar amigos
               </li>
               <li>
                 <img src={report} className="icon" alt="" />
-                report abuse
+                denunciar
               </li>
             </ul>
             <hr />
@@ -74,12 +80,12 @@ const Page = (props: { content: contentObj }) => {
 
           <div className="cont-mid">
             <span className="title-mid">{content.name || initialValue.name}</span>
-            <ul className="breadcrumbs">
-              <li>Home</li>
-              <li>Communities</li>
-              <li>Cultures & Communities</li>
-              <li>{content.name || initialValue.name}</li>
-            </ul>
+            <br/>
+            <span className="breadcrumbs">
+              Início <span className="rarrow">&gt; </span>
+              Comunidades <span className="rarrow">&gt; </span>
+              {content.name || initialValue.name}
+            </span>
 
             <table className="mid-table">
               <tr>
@@ -93,13 +99,13 @@ const Page = (props: { content: contentObj }) => {
                 <td>idioma:</td>
                 <td>Português (BR)</td>
               </tr>
-              <tr>
-                <td>categoria</td>
+              {/* <tr>
+                <td>categoria:</td>
                 <td></td>
-              </tr>
+              </tr> */}
               <tr>
-                <td>membros</td>
-                <td></td>
+                <td>membros:</td>
+                  <td>{content.members || initialValue.members}</td>
               </tr>
               <tr>
                 <td>tipo:</td>
@@ -120,54 +126,28 @@ const Page = (props: { content: contentObj }) => {
             <span className="title-right">comunidades relacionadas</span>
 
             <div className="cards">
-              <div className="card">
-                <div className="card-pic border"></div>
+              {Array.apply(null, Array(6)).map(()=>{
+                let index = Math.floor(Math.random()*(comunidades.length));
+                while(true){
+                  if(!relComArray.includes(index)){
+                    relComArray.push(index)
+                    break;
+                  }
+                  index = Math.floor(Math.random()*(comunidades.length));
+                }
+                const relComObj = comunidades[index]
+                return(
+                  <div className="card">
+                <div className="card-pic"><img src={relComObj.picture} alt=""/></div>
                 <div className="card-desc">
-                  <span className="card-title">Comunidade</span>
+                  <span className="card-title">{relComObj.name}</span>
                   <br />
-                  <span className="card-number">(11,470)</span>
+                  <span className="card-number">({relComObj.members || "11.470"})</span>
                 </div>
               </div>
-              <div className="card">
-                <div className="card-pic border"></div>
-                <div className="card-desc">
-                  <span className="card-title">Comunidade</span>
-                  <br />
-                  <span className="card-number">(11,470)</span>
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-pic border"></div>
-                <div className="card-desc">
-                  <span className="card-title">Comunidade</span>
-                  <br />
-                  <span className="card-number">(11,470)</span>
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-pic border"></div>
-                <div className="card-desc">
-                  <span className="card-title">Comunidade</span>
-                  <br />
-                  <span className="card-number">(11,470)</span>
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-pic border"></div>
-                <div className="card-desc">
-                  <span className="card-title">Comunidade of the century</span>
-                  <br />
-                  <span className="card-number">(11,470)</span>
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-pic border"></div>
-                <div className="card-desc">
-                  <span className="card-title">Comunidade</span>
-                  <br />
-                  <span className="card-number">(11,470)</span>
-                </div>
-              </div>
+                )
+              })}
+              
             </div>
           </div>
         </div>

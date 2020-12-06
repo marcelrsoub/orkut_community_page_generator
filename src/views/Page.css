@@ -60,6 +60,8 @@ hr{
   background: #ddd;
   height: 1px;
   border: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .logo {
   margin-top: -2px;
@@ -120,9 +122,9 @@ hr{
   background-color: white;
   position: absolute;
   top: 40px;
-  right: 0px;
+  right: 5px;
   /* height:285px; */
-  width: 290px;
+  width: 350px;
 }
 
 div[class|="cont"] {
@@ -139,7 +141,7 @@ div[class|="cont"] {
   top: 40px;
   left: 155px;
   height: auto;
-  width: 553px;
+  width: 493px;
   padding: 7px;
   border-top-right-radius: 53px !important;
 }
@@ -151,25 +153,23 @@ div[class|="cont"] {
 
 .breadcrumbs {
   margin-top: 0px;
-}
-
-.breadcrumbs li {
-  float: left;
+  margin-bottom: 0px;
   font-size: small;
-  margin-left: 15px;
-  list-style: ">";
+  color:rgb(61, 61, 61);
 }
 
-.breadcrumbs li:first-child {
-  list-style: none;
-  margin-left: 0;
+.rarrow{
+  color:grey;
+  font-size: smaller;
+  font-weight: bold;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 .mid-table{
-  margin-top: 30px;
+  margin-top: 5px;
   width:100%;
   padding: 0;
   font-size: small;
@@ -193,7 +193,7 @@ table {
 .mid-table tr td:first-child{
     text-align: right;
     width:25%;
-    color:#424242;
+    color:#696969;
     vertical-align: top;
 }
 
@@ -255,16 +255,21 @@ table {
   height: 140px;
   margin-left: 5px;
   margin-bottom: 5px;
-  width: 30%;
+  width: 31.5%;
   font-size: 12px;
   text-align: center;
+  align-content:center;
   background: #f1f1f1;
 }
 .card-pic {
   position: relative;
   top: 10px;
-  left: 10px;
+  left: 20px;
   width: 65px;
+  height: 70px;
+}
+.card-pic img{
+  max-width: 65px;
   height: 70px;
 }
 .card-desc {
