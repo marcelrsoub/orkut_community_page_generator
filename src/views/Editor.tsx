@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Card,
   CardActions,
@@ -7,33 +6,34 @@ import {
   CardMedia,
   Container,
   Grid,
-  Hidden,
-  Modal,
   TextField,
   Typography,
 } from "@material-ui/core";
-import { AddAPhoto, Check, PanoramaFishEye, Save, Visibility } from "@material-ui/icons";
+import { AddAPhoto, Check, Save, Visibility } from "@material-ui/icons";
 import html2canvas from "html2canvas";
-import React, { useRef, useState } from "react";
-import Page, {initialValue} from "./Page";
+import React, { useState } from "react";
+import Page, { initialValue } from "./Page";
 
 const Editor = (props: any) => {
-  const [imgOpen, setImgOpen] = useState(false);
-  const downloadBtn = useRef();
 
   function gerarImagem() {
-    window.scroll(0,0);
-    html2canvas(document.querySelector("#capture"), {allowTaint:true}).then((canvas) => {
-      // document.body.appendChild(canvas);
-      const imgUrl = canvas.toDataURL("image/png");
-      let element = document.getElementById("downloadBtn");
-      if (element !== null) {
-        element.setAttribute("href", imgUrl);
-        element.click();
-      }
-
-      // setImgOpen(true);
-    });
+    window.scroll(0, 0);
+    const canvasAnchor: HTMLElement | null = document.querySelector("#capture");
+    if(canvasAnchor){
+      html2canvas(canvasAnchor, { allowTaint: true }).then(
+        (canvas) => {
+          // document.body.appendChild(canvas);
+          const imgUrl = canvas.toDataURL("image/png");
+          let element = document.getElementById("downloadBtn");
+          if (element !== null) {
+            element.setAttribute("href", imgUrl);
+            element.click();
+          }
+  
+          // setImgOpen(true);
+        }
+      );
+    }
   }
   // const handleClick = event => {
   //   const anchor = (event.target.ownerDocument || document).querySelector(
@@ -46,18 +46,20 @@ const Editor = (props: any) => {
   // };
 
   function preverImagem() {
-    window.scroll(0,0);
-    html2canvas(document.querySelector("#capture"), {allowTaint:true}).then((canvas) => {
-      // document.body.appendChild(canvas);
-      const imgUrl = canvas.toDataURL("image/png");
-      let element = document.getElementById("showImg");
-      if (element !== null) {
-        element.setAttribute("src", imgUrl);
-        // element.click();
-      }
+    window.scroll(0, 0);
+    html2canvas(document.querySelector("#capture"), { allowTaint: true }).then(
+      (canvas) => {
+        // document.body.appendChild(canvas);
+        const imgUrl = canvas.toDataURL("image/png");
+        let element = document.getElementById("showImg");
+        if (element !== null) {
+          element.setAttribute("src", imgUrl);
+          // element.click();
+        }
 
-      // setImgOpen(true);
-    });
+        // setImgOpen(true);
+      }
+    );
   }
 
   const [contentObj, setContentObj] = useState(initialValue);
@@ -73,7 +75,19 @@ const Editor = (props: any) => {
 
   return (
     <>
-    <div className="canvas-top" style={{zIndex:-1000,overflow:"hidden",width:0,height:0,padding:0,margin:0}}><Page content={contentObj} /></div>
+      <div
+        className="canvas-top"
+        style={{
+          zIndex: -1000,
+          overflow: "hidden",
+          width: 0,
+          height: 0,
+          padding: 0,
+          margin: 0,
+        }}
+      >
+        <Page content={contentObj} />
+      </div>
       <Container>
         <Card style={{ marginBottom: "50px", marginTop: "50px" }}>
           <CardContent>
@@ -122,7 +136,7 @@ const Editor = (props: any) => {
                 />
               </Grid>
               <Grid item>
-                {contentObj.photoSrc !== "" ? <Check />:null}
+                {contentObj.photoSrc !== "" ? <Check /> : null}
                 <Button
                   variant="outlined"
                   component="label"
@@ -144,7 +158,7 @@ const Editor = (props: any) => {
           </CardContent>
           <CardActions>
             <Button
-            variant="outlined"
+              variant="outlined"
               onClick={() => {
                 preverImagem();
               }}
@@ -152,16 +166,17 @@ const Editor = (props: any) => {
               <Visibility />
             </Button>
             <Button
-            variant="outlined"
+              variant="outlined"
               style={{ marginLeft: "auto" }}
               onClick={() => {
                 gerarImagem();
               }}
             >
-             <Save />
+              <Save />
             </Button>
             <a
               id="downloadBtn"
+              href="./"
               download="comunidade-orkut.png"
               style={{ display: "none" }}
             >
@@ -169,17 +184,12 @@ const Editor = (props: any) => {
             </a>
           </CardActions>
           <CardMedia>
-            
-            
-      {/* <Page content={contentObj} /> */}
-            <img id="showImg" style={{width:"100%"}} alt="" />
+            {/* <Page content={contentObj} /> */}
+            <img id="showImg" style={{ width: "100%" }} alt="" />
           </CardMedia>
           {/* </Hidden> */}
-
         </Card>
       </Container>
-
-      
     </>
   );
 };

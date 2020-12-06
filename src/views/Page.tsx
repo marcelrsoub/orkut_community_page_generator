@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Page.css";
 
 import join from "../assets/img/camera.png";
@@ -25,7 +25,7 @@ export const initialValue:contentObj = {
 
 const Page = (props: { content: contentObj }) => {
   let content: contentObj = props.content;
-  let relComArray:number[] = new Array();
+  let relComArray:number[] = [];
   if(!content) content=initialValue;
   return (
     <div className="wrapper">
