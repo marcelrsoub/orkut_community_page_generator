@@ -15,24 +15,21 @@ import React, { useState } from "react";
 import Page, { initialValue } from "./Page";
 
 const Editor = (props: any) => {
-
   function gerarImagem() {
     window.scroll(0, 0);
     const canvasAnchor: HTMLElement | null = document.querySelector("#capture");
-    if(canvasAnchor){
-      html2canvas(canvasAnchor, { allowTaint: true }).then(
-        (canvas) => {
-          // document.body.appendChild(canvas);
-          const imgUrl = canvas.toDataURL("image/png");
-          let element = document.getElementById("downloadBtn");
-          if (element !== null) {
-            element.setAttribute("href", imgUrl);
-            element.click();
-          }
-  
-          // setImgOpen(true);
+    if (canvasAnchor) {
+      html2canvas(canvasAnchor, { allowTaint: true }).then((canvas) => {
+        // document.body.appendChild(canvas);
+        const imgUrl = canvas.toDataURL("image/png");
+        let element = document.getElementById("downloadBtn");
+        if (element !== null) {
+          element.setAttribute("href", imgUrl);
+          element.click();
         }
-      );
+
+        // setImgOpen(true);
+      });
     }
   }
   // const handleClick = event => {
@@ -47,8 +44,9 @@ const Editor = (props: any) => {
 
   function preverImagem() {
     window.scroll(0, 0);
-    html2canvas(document.querySelector("#capture"), { allowTaint: true }).then(
-      (canvas) => {
+    const canvasAnchor: HTMLElement | null = document.querySelector("#capture");
+    if (canvasAnchor) {
+      html2canvas(canvasAnchor, { allowTaint: true }).then((canvas) => {
         // document.body.appendChild(canvas);
         const imgUrl = canvas.toDataURL("image/png");
         let element = document.getElementById("showImg");
@@ -58,8 +56,8 @@ const Editor = (props: any) => {
         }
 
         // setImgOpen(true);
-      }
-    );
+      });
+    }
   }
 
   const [contentObj, setContentObj] = useState(initialValue);
